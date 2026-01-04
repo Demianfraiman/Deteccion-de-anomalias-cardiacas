@@ -12,22 +12,6 @@ This repository contains the research implementation of a novel graph-based fram
 
 Our framework follows a three-stage pipeline:
 
-Raw ECG Signal (140Hz, 1s)
-↓
-[1] Graph Representation Learning
-├── Option A: Self-Organizing Maps (SOM)
-└── Option B: K-means with Graph Connections
-↓
-[2] Geodesic Distance Computation
-└── Ball-Tree for O(log k) neighbor search
-↓
-[3] Probabilistic Classification
-└── PNN with asymmetric loss functions
-↓
-Anomaly Probability + Clinical Risk Assessment
-
-
-### Key Components
 
 #### 1. **Graph-Based Representation Learning**
 Instead of processing raw ECG signals directly, we learn an embedded graph that captures the intrinsic manifold structure of cardiac waveforms:

@@ -8,48 +8,23 @@ This repository contains the research implementation of a novel graph-based fram
 
 ## 🔬 How It Works
 
-[Start]
-  │
-  ├── Patient Metadata ────┐
-  │                        ↓
-  └── Raw ECG Signal → Graph Construction → Embedded Graph
-                                │
-                                ↓
-                        Geodesic Distance Matrix
-                                │
-                                ↓
-                        Ball-Tree Indexing (O(log k))
-                                │
-                                ↓
-                        PNN Classification
-                                │
-                                ↓
-  Prior Risk ───────────→ Bayesian Combination
-                                │
-                                ↓
-                        Risk-Aware Decision
-                                │
-                                ↓
-  [End] ←─── Clinical Output (Normal/Anomalous/Review)
+#### 1. **Prior cardiac pathology affinity**
+Using patient history and data we calculate a prior probability of having a disease.
 
-
-#### 1. **Graph-Based Representation Learning**
+#### 2. **Graph-Based Representation Learning**
 Instead of processing raw ECG signals directly, we learn an embedded graph that captures the intrinsic manifold structure of cardiac waveforms:
 
 - **SOM Approach**: Creates a 2D grid where neurons adapt to represent ECG patterns
 - **K-means Approach**: Forms graph nodes from cluster centroids, connected by proximity
 
-#### 2. **Dynamic Time Warping (DTW) Distance**
+#### 3. **Dynamic Time Warping (DTW) Distance**
 Unlike Euclidean distance, DTW accounts for temporal misalignments in ECG signals, crucial for accurate pattern matching.
 
-#### 3. **Probabilistic Neural Network (PNN)**
+#### 4. **Probabilistic Neural Network (PNN)**
 Classification uses geodesic distances within the learned graph, providing:
 - Probability estimates for each class
 - Asymmetric loss handling (different costs for false positives/negatives)
 - Optimal Bayes decision-making
-
-#### 4. **Ball-Tree Indexing**
-Enables efficient O(log k) nearest-centroid search, making real-time prediction feasible on mobile devices.
 
 ## ✨ Key Advantages
 

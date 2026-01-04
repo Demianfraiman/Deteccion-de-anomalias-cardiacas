@@ -8,9 +8,29 @@ This repository contains the research implementation of a novel graph-based fram
 
 ## 🔬 How It Works
 
-### Core Architecture
-
-Our framework follows a three-stage pipeline:
+[Start]
+  │
+  ├── Patient Metadata ────┐
+  │                        ↓
+  └── Raw ECG Signal → Graph Construction → Embedded Graph
+                                │
+                                ↓
+                        Geodesic Distance Matrix
+                                │
+                                ↓
+                        Ball-Tree Indexing (O(log k))
+                                │
+                                ↓
+                        PNN Classification
+                                │
+                                ↓
+  Prior Risk ───────────→ Bayesian Combination
+                                │
+                                ↓
+                        Risk-Aware Decision
+                                │
+                                ↓
+  [End] ←─── Clinical Output (Normal/Anomalous/Review)
 
 
 #### 1. **Graph-Based Representation Learning**
@@ -52,16 +72,6 @@ Enables efficient O(log k) nearest-centroid search, making real-time prediction 
 - **Asymmetric error handling**: Different costs for false negatives (missing anomalies) vs. false positives
 - **Prior incorporation**: Uses patient history as Bayesian priors
 - **Validated performance**: 94-98% accuracy on controlled datasets
-
-## 📊 Performance Highlights
-
-| Model | Synthetic Data | Real ECG Data | Real + Patient History |
-|-------|---------------|---------------|------------------------|
-| **SOM + PNN** | 97% accuracy | 92% accuracy | 93% accuracy |
-| **K-means + PNN** | 98% accuracy | 94% accuracy | 95% accuracy |
-| **Simple Baseline** | 84% accuracy | 92% accuracy | 93% accuracy |
-
-**Key Insight**: The graph-based approaches significantly outperform simple methods on synthetic data (14-15% improvement), showing their ability to capture complex ECG patterns.
 
 @article{fraiman2025cardiac,
   title={Cardiac Anomaly Detection Using Graph-Based Representation Learning},
